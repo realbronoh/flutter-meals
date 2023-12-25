@@ -50,7 +50,7 @@ class _TabeScreenState extends State<TabsScreen> {
     });
   }
 
-  void _setScreen(String identifier) {
+  void _setScreen(String identifier) async {
     // close drawer
     Navigator.of(context).pop();
     if (identifier == 'meals') {
@@ -58,11 +58,12 @@ class _TabeScreenState extends State<TabsScreen> {
     }
     if (identifier == 'filters') {
       // filters screen
-      Navigator.of(context).push(
+      final result = await Navigator.of(context).push<Map<Filter, bool>>(
         MaterialPageRoute(
           builder: (ctx) => const FiltersScreen(),
         ),
       );
+      print(result);
     }
   }
 
