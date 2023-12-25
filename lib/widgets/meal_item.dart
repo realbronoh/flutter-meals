@@ -7,6 +7,7 @@ class MealItem extends StatelessWidget {
   const MealItem({
     super.key,
     required this.meal,
+    required this.onSelectMeal,
   });
 
   final Meal meal;
@@ -21,6 +22,8 @@ class MealItem extends StatelessWidget {
         meal.affordability.name.substring(1).toLowerCase();
   }
 
+  final void Function(Meal meal) onSelectMeal;
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -31,7 +34,9 @@ class MealItem extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       elevation: 2,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          onSelectMeal(meal);
+        },
         child: Stack(
           children: [
             FadeInImage(
